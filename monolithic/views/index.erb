@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>BBS</title>
+</head>
+<body>
+    <h1>BBS</h1>
+    <ul>
+        <% @comments.each do |comment| %>
+        <li data-id "<%= comment.id %>">
+            <%= h comment.body %>
+        </li>
+        <% end %>
+    </ul>
+    <h2>Add new</h2>
+    <form method="post" action="/bbs/new">
+        <input type= "text" name="body"><input type= "submit" value="post!">
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        $('.deleteCmd').click(function(){
+            var el = $(this).parent();
+            if (confirm('are you sure to delete?')){
+                $.post('/bbs/delete',{
+                    id: el.data('id')
+                },function(){
+                    el.fadeOut(800);
+                });
+            }
+        })
+    </script>
+</body>
+</html>

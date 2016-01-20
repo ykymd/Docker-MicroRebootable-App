@@ -1,0 +1,26 @@
+# root(router)
+router:
+    build: router
+    links:
+        - factorial:factorial
+        - fibonacci:fibonacci
+        - bbs:bbs
+        - crash:crash
+    ports:
+        - "80:4567"
+        
+# 階乗計算モジュール
+factorial:
+    build: factorial
+    
+# フィボナッチ数計算モジュール
+fibonacci:
+    build: fibonacci
+    
+# 簡易掲示板
+bbs:
+    build: bbs
+    
+# クラッシュオンリーアプリ
+crash:
+    build: crashonlyapp
